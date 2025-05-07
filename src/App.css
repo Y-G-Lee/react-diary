@@ -7,10 +7,27 @@
   margin: auto;
 }
 
-.btn {
-  padding: 8px 16px;
-  background-color: pink;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
+.logo {
+  width: 200px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #aaaaaa;
+  padding: 12px 4px;
+}
+
+.menu-box {
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+  color: black;
+  text-decoration: none;
+  padding: 12px;
+}
+.menu:hover {
+  text-decoration: underline;
 }
