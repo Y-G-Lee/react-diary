@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { getDate } from "../../common/common";
 import "./Home.css";
+import Modal from "../../components/Modal/Modal";
 
 // Home 컴포넌트
 // 홈화면에서 App.jsx의 네비게이션 아래 위치할 화면단
@@ -43,6 +44,10 @@ function Home() {
       date: "2025.05.03",
     },
   ]);
+
+  const [isModalShow, setIsModalShow] = useState(false);
+  const [modalMsg, setModalMsg] = useState();
+
   return (
     <>
       {/* 페이지가 바뀔때마다 네비게이션 아래 부분 교체되면 됨 */}
@@ -78,6 +83,13 @@ function Home() {
             className="input-btn"
             onClick={() => {
               console.log(text);
+
+              if(!text) {
+                setModalMsg("한줄 감성을 입력해주세요");
+                setIsModalShow(true);
+                return;
+              }
+
               // JSON 객체 생성
               const temp = {};
               temp.title = text;
@@ -96,6 +108,9 @@ function Home() {
 
               // input 태그 내부 비워주기
               setText("");
+
+              setModalMsg("등록되었습니다");
+              setIsModalShow(true);
             }}
           >
             등록
@@ -125,6 +140,14 @@ function Home() {
             </div>
           ))}
         </div>
+
+        {
+          isModalShow &&
+          // input 태그값이 비어있다면 modalMsg = "한줄감성을 입력하세요"
+          // input 태그값이 채워져있다면 modalMsg = "등록되었습니다"
+          // 이후 setIsModalShow(true)
+          <Modal msg={modalMsg} close={() => setIsModalShow(false)} />
+        }
       </div>
     </>
   );

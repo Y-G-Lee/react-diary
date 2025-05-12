@@ -1,13 +1,13 @@
 import "./Lotto.css";
-import close from "../../assets/close.png";
 import { useState, useEffect } from "react";
+import Modal from "../../components/Modal/Modal";
 
 function Lotto() {
 
     const [lottoArray, setLottoArray] = useState(makeLotto());
     const [count, setCount] = useState(3);
     const [winCount, setWinCount] = useState(0);
-    
+    const [isModalShow, setIsModalShow] = useState(false);
 
     // 당첨 로또 번호
     const winLotto = [3, 13, 28, 34, 38, 42];
@@ -47,23 +47,29 @@ function Lotto() {
             <span> {winCount}개 일치</span>
             <span style={{margin: "0 16px"}}> 기회 {count}회 </span>
             <button onClick={() => {
-                // if(count > 0)
+                // if(count != 0)
                 if(count > 0) {
                     setLottoArray(makeLotto());
                     setCount(count-1);
+                } else {
+                  // 모달창 띄우기
+                  // (모달창의 출력 상태를 true로 변경)
+                  setIsModalShow(true);
                 }
                 }}> 다시뽑기 </button>
         </div>
 
         {/* 모달창 */}
-        <div className="modal">
-            <div className="modal-top">
-                <img className="modal-close" src={close} alt="" />
-                </div>
-            <div className="modal-bottom">
-                기회를 모두 소진하셨습니다.
-            </div>
-        </div>
+        {/* 다시뽑기시 기회가 0이면 모달창 출력 (= 상태관리 useState) */}
+        {/* isModalShow가 true면 오른쪽 JSX 구문이 화면에 출력 */}
+        {/* isModalShow가 false면 오른쪽 JSX 구문이 화면에 출력되지 않음 */}
+        {
+          isModalShow &&
+          // Home.jsx 와 Lotto.jsx 모두 Modal 컴포넌트 사용중
+          // Modal 컴포넌트에서 출력 문구가 달라야 함 (= props 사용)
+          // props에는 함수도 넘겨줄 수 있음
+          <Modal msg="기회가 모두 소진되었습니다." close={() => setIsModalShow(false)} />
+        }
     </div>
   );
 }

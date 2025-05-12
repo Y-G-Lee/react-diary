@@ -1,0 +1,42 @@
+.post-container {
+    padding: 40px 100px;
+}
+
+.post-list {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.post-list thead {
+    background-color: pink;
+}
+
+.post-list th {
+    padding: 8px 0;
+}
+
+.post-list td {
+    text-align: center;
+    padding: 8px 0;
+}
+
+.post-list tr {
+    border-bottom: 1px solid pink;
+}
+
+.post-list th:nth-child(1) {
+    width: 15%;
+}
+
+.post-list th:nth-child(3) {
+    width: 20%;
+}
+
+.post-list td:nth-child(2) {
+    text-align: start;
+}
+
+.write-btn-box {
+    margin-top: 16px;
+    text-align: end;
+}

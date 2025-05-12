@@ -1,0 +1,33 @@
+.write-container {
+    width: 80%;
+    margin: auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.write-box {
+    height: 40px;
+    margin-bottom: 20px;
+    border: 1px solid pink;
+}
+
+.content {
+    height: 300px;
+    border: 1px solid pink;
+}
+
+.btn-box {
+    text-align: end;
+    padding: 10px 0;
+}
+
+.cancle-btn {
+    width: 60px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid pink;
+    border-radius: 8px;
+}
+
+.commit-btn 
