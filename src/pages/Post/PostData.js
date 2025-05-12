@@ -16,3 +16,14 @@ export const initPostArray = [
         date: "2025.04.21"
     }
 ];
+
+// postArray에서 가장 높은 글번호 리턴
+export function getNextNo(postArray) {
+    let max = 0;
+    postArray.forEach((data) => {
+        if(max < data.no) {
+            max = data.no;
+        }
+    });
+    return max + 1;
+}

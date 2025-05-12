@@ -1,11 +1,16 @@
-import { useState } from "react";
-import { initPostArray } from "./PostData";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+// Context로 공유한 데이터 불러오기
+// 1. 생성한 ContextPost 불러오기
+import { ContextPost } from "./postContext";
+// 2. useContext 불러오기
+import { useContext } from "react";
 
 function PostList() {
-  const [postArray, setPostArray] = useState(initPostArray);
   const navigate = useNavigate();
+  // 3. useContext 안에 불러온 Context 넣기
+  const {postArray} = useContext(ContextPost);
+
   return (
     <div className="post-container">
       <table className="post-list">
@@ -17,16 +22,24 @@ function PostList() {
           </tr>
         </thead>
         <tbody>
-          {postArray.map((data) => (
-            <tr key={data.no}>
-              <td> {data.no} </td>
+          {/* postArray에 데이터가 없으면 '등록된 게시글이 없습니다' 출력 */}
+          {
+            (postArray.length > 0) ? (postArray.map((data) => (
+              <tr key={data.no}>
+                <td> {data.no} </td>
 
-              <td>
-                <Link to={"/post/detail"}> {data.title} </Link>
-              </td>
-              <td> {data.date} </td>
+                <td>
+                  {/* to="" 속성값에 변수값 넣기 */}
+                  <Link to={`/post/detail/?no=${data.no}`} > {data.title} </Link>
+                </td>
+                <td> {data.date} </td>
+              </tr>
+          ))) : (
+            <tr>
+              <td colSpan={3}> 등록된 게시글이 없습니다 </td>
             </tr>
-          ))}
+          )
+          }
         </tbody>
       </table>
       <div className="write-btn-box">

@@ -1,0 +1,18 @@
+.detail-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    border: 2px solid pink;
+    border-radius: 12px;
+    padding: 40px;
+}
+
+.detail-title {
+    padding-bottom: 20px;
+    border-bottom: 2px solid pink;
+}
+
+.detail-content {
+    height: 400px;
+    padding: 20px 0;
+}

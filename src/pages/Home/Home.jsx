@@ -129,7 +129,7 @@ function Home() {
           </div>
         </div>
 
-        {/* dataArray를 이용하여 화면 구현현 */}
+        {/* dataArray를 이용하여 화면 구현 */}
         {/* 이후 input-btn 버튼을 누르면 dataArray에 JSON 객체가 추가되고 화면에 반영 */}
         {/* dataArray를 useState으로 상태관리하기 */}
         <div className="data-box">
