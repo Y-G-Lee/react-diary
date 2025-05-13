@@ -5,14 +5,38 @@ import { Link } from "react-router-dom";
 import { ContextPost } from "./postContext";
 // 2. useContext 불러오기
 import { useContext } from "react";
+import { useState, useEffect } from "react";
 
 function PostList() {
   const navigate = useNavigate();
   // 3. useContext 안에 불러온 Context 넣기
-  const {postArray} = useContext(ContextPost);
+  const {postArray, setPostArray} = useContext(ContextPost);
+
+  // 오름차순, 내림차순에 대한 상태관리
+  const [isDesc, setIsDesc] = useState(true);
+
+  // isDesc가 바뀔때마다 postArray를 정렬한 후 setPostArray에 넣기 (화면에 반영)
+  // useEffect 사용
+  useEffect(() => {
+    // isDesc가 true면 내림차순 정렬
+    if(isDesc) {
+      postArray.sort((a, b) => b.no - a.no);
+    }else {
+      postArray.sort((a, b) => a.no - b.no);
+    }
+
+    setPostArray([...postArray]);
+  }, [isDesc]);  // 배열 내 isDesc가 변할때마다 내부 익명함수가 실행
 
   return (
     <div className="post-container">
+      <div className="text-align-end">
+        {/* 클릭할때마다 isDesc 값을 반전시킨다 */}
+        <span onClick={() => setIsDesc(!isDesc)}> 
+        {isDesc == true ? "▼" : "▲"}
+          최신순 
+          </span>
+      </div>
       <table className="post-list">
         <thead>
           <tr>
